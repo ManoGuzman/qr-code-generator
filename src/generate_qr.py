@@ -3,20 +3,20 @@
 QR Code Generator CLI
 
 Usage:
-  python generate_qr.py -f <url_or_file.txt>
-  python generate_qr.py -d <directory> [--recursive]
+  python src/generate_qr.py -f <url_or_file.txt>
+  python src/generate_qr.py -d <directory> [--recursive]
 
   # Single URL → img/example.com.png
-  python generate_qr.py -f https://example.com
+  python src/generate_qr.py -f https://example.com
 
   # .txt file (one URL per line, # comments ignored)
-  python generate_qr.py -f urls.txt
+  python src/generate_qr.py -f urls.txt
 
   # All .txt files in a folder
-  python generate_qr.py -d ./links
+  python src/generate_qr.py -d ./links
 
   # Recursive across nested folders
-  python generate_qr.py -d ./links --recursive
+  python src/generate_qr.py -d ./links --recursive
 
 Output is always written to ./img/
 """
@@ -94,7 +94,14 @@ def process_txt_file(txt_path: Path, output_dir: Path) -> int:
     count = 0
     with open(txt_path, encoding="utf-8") as f:
         for line in f:
-            result = generate_qr(line, output_dir)
+            try:
+                result = generate_qr(line, output_dir)
+            except Exception as exc:
+                print(
+                    f"Error generating QR for line '{line.strip()}': {exc}",
+                    file=sys.stderr,
+                )
+                continue
             if result:
                 count += 1
     return count
