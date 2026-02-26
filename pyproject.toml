@@ -1,0 +1,9 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "qr-code-generator"
+version = "0.1.0"
+description = "A simple QR code generator script."
+authors = [{name = "Manuel Guzmán", email = "manuguzman8@gmail.com"}]
