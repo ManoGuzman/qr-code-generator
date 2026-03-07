@@ -43,4 +43,4 @@ exclude_lines = [
 generate-qr = "generate_qr:main"
 
 [tool.hatch.build.targets.wheel]
-packages = ["."]
+sources = ["src"]
