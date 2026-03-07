@@ -14,6 +14,31 @@ dependencies = [
     "qrcode[pil]>=7.4",   # qrcode core + Pillow for PNG rendering
 ]
 
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0",
+    "pytest-cov>=4.0",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = "-v --cov=. --cov-report=term-missing"
+
+[tool.coverage.run]
+source = ["."]
+omit = ["tests/*", "*/tests/*", "build/*", "dist/*"]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "raise NotImplementedError",
+    "if __name__ == .__main__.:",
+]
+
 [project.scripts]
 generate-qr = "generate_qr:main"
 
