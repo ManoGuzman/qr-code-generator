@@ -1,10 +1,11 @@
-import pytest
 from pathlib import Path
 
-from src.generate_qr import (
-    sanitize_filename,
+import pytest
+
+from src.qr_code_generator import (
     generate_qr,
     process_txt_file,
+    sanitize_filename,
 )
 
 

@@ -27,7 +27,6 @@ from pathlib import Path
 
 import qrcode
 
-
 OUTPUT_DIR = Path("img")
 
 
@@ -121,7 +120,6 @@ def handle_file(input_arg: str) -> None:
         count = process_txt_file(p, OUTPUT_DIR)
         print(f"\nDone — {count} QR code(s) generated in '{OUTPUT_DIR}/'")
     else:
-        # Treat argument as a raw URL
         print(f"\nGenerating QR for: {input_arg}")
         generate_qr(input_arg, OUTPUT_DIR)
         print(f"\nDone — saved in '{OUTPUT_DIR}/'")
