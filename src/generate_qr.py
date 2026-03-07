@@ -96,7 +96,7 @@ def process_txt_file(txt_path: Path, output_dir: Path) -> int:
         for line in f:
             try:
                 result = generate_qr(line, output_dir)
-            except Exception as exc:
+            except (ValueError, OSError, qrcode.exceptions.DataOverflowError) as exc:
                 print(
                     f"Error generating QR for line '{line.strip()}': {exc}",
                     file=sys.stderr,
