@@ -39,10 +39,16 @@ def process_txt_file(txt_path: Path, output_dir: Path) -> int:
 
 def handle_file(input_arg: str) -> None:
     """
-    Handle the '-f' argument: accepts a raw URL or a path to a .txt file.
+    Handle the ``-f`` CLI argument: generate QR codes from a URL or a .txt file.
+
+    If ``input_arg`` is an existing ``.txt`` file, every URL in that file is
+    processed via :func:`process_txt_file`.  Otherwise the argument is treated
+    as a raw URL and a single QR code is generated.
+
+    Progress and summary information are printed to stdout.
 
     Args:
-        input_arg (str): URL or path to .txt file.
+        input_arg (str): A raw URL string or a path to a ``.txt`` file of URLs.
     """
     p = Path(input_arg)
 
@@ -58,11 +64,19 @@ def handle_file(input_arg: str) -> None:
 
 def handle_directory(dir_arg: str, recursive: bool) -> None:
     """
-    Handle the '-d' argument: find all .txt files in a directory.
+    Handle the ``-d`` CLI argument: generate QR codes from all .txt files in a directory.
+
+    Scans ``dir_arg`` for ``.txt`` files (using ``**/*.txt`` when ``recursive``
+    is ``True``, or ``*.txt`` otherwise) and processes each one via
+    :func:`process_txt_file`.  Files are processed in sorted order.
+
+    Exits with code 1 (via :func:`sys.exit`) if ``dir_arg`` is not a valid
+    directory or if no ``.txt`` files are found.  Progress and summary
+    information are printed to stdout.
 
     Args:
-        dir_arg (str): Directory path.
-        recursive (bool): Whether to search subdirectories.
+        dir_arg (str): Path to the directory to scan.
+        recursive (bool): When ``True``, also search subdirectories.
     """
     d = Path(dir_arg)
     if not d.is_dir():
