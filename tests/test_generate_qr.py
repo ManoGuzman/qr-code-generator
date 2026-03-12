@@ -11,14 +11,13 @@ from qr_code_generator import (
 
 
 class TestSanitizeFilename:
+    """Tests for the sanitize_filename utility function."""
+
     def test_simple_url(self):
         assert sanitize_filename("https://example.com") == "example.com"
 
     def test_url_with_path(self):
-        assert (
-            sanitize_filename("https://example.com/path/to/page")
-            == "example.com_path_to_page"
-        )
+        assert sanitize_filename("https://example.com/path/to/page") == "example.com_path_to_page"
 
     def test_url_with_query_params(self):
         assert sanitize_filename("https://example.com?foo=bar") == "example.com_foo_bar"
@@ -39,8 +38,11 @@ class TestSanitizeFilename:
 
 
 class TestGenerateQR:
+    """Tests for the generate_qr core function."""
+
     @pytest.fixture
     def temp_output_dir(self, tmp_path):
+        """Provide a temporary output directory that does not exist yet."""
         return tmp_path / "qr_output"
 
     def test_valid_url_creates_file(self, temp_output_dir):
@@ -130,8 +132,11 @@ class TestGenerateQR:
 
 
 class TestProcessTxtFile:
+    """Tests for process_txt_file, which reads a .txt file and generates QR codes."""
+
     @pytest.fixture
     def temp_dir(self, tmp_path):
+        """Provide a temporary working directory for input and output files."""
         return tmp_path
 
     def test_processes_valid_urls(self, temp_dir):
@@ -162,9 +167,7 @@ class TestProcessTxtFile:
 
     def test_handles_special_characters_in_file(self, temp_dir):
         txt_file = temp_dir / "urls.txt"
-        txt_file.write_text(
-            "https://ejemplo.com/café\nhttps://test.com\n", encoding="utf-8"
-        )
+        txt_file.write_text("https://ejemplo.com/café\nhttps://test.com\n", encoding="utf-8")
 
         output_dir = temp_dir / "output"
         count = process_txt_file(txt_file, output_dir)
@@ -180,8 +183,11 @@ class TestProcessTxtFile:
 
 
 class TestDifferentOutputFormats:
+    """Tests that verify the output file format and destination path."""
+
     @pytest.fixture
     def temp_output_dir(self, tmp_path):
+        """Provide a temporary output directory that does not exist yet."""
         return tmp_path / "qr_output"
 
     def test_png_output_format(self, temp_output_dir):
@@ -196,8 +202,11 @@ class TestDifferentOutputFormats:
 
 
 class TestEdgeCases:
+    """Tests for boundary conditions and unusual inputs in generate_qr."""
+
     @pytest.fixture
     def temp_output_dir(self, tmp_path):
+        """Provide a temporary output directory that does not exist yet."""
         return tmp_path / "qr_output"
 
     def test_single_character_url(self, temp_output_dir):
