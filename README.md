@@ -21,6 +21,10 @@
 <br />
 <div align="center">
 
+  <a href="https://github.com/ManoGuzman/qr-code-generator">
+    <img src="https://img.icons8.com/?size=100&id=XdgEzmYg0J8k&format=png&color=000000" alt="QR Logo" width="80" height="80">
+  </a>
+
 <h3 align="center">QR Code Generator</h3>
 
   <p align="center">
@@ -250,7 +254,7 @@ Project Link: [https://github.com/ManoGuzman/qr-code-generator](https://github.c
 [license-shield]: https://img.shields.io/github/license/ManoGuzman/qr-code-generator.svg?style=for-the-badge
 [license-url]: https://github.com/ManoGuzman/qr-code-generator/blob/master/LICENSE
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
-[linkedin-url]: https://linkedin.com/in/linkedin_username
+[linkedin-url]: https://linkedin.com/in/manuel-guzmán-b87b841bb/
 <!-- Shields.io badges. You can find a comprehensive list with many more badges at: https://github.com/inttter/md-badges -->
 [Python.org]: https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white
 [Python-url]: https://www.python.org/
