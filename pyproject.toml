@@ -4,18 +4,14 @@ build-backend = "hatchling.build"
 
 [project]
 name = "qr-code-generator"
-version = "0.1.0"
+version = "0.2.0"
 description = "A simple QR code generator script."
 authors = [{name = "Manuel Guzmán", email = "manuguzman8@gmail.com"}]
 readme = "README.md"
 requires-python = ">=3.10"
 
 dependencies = [
-    "qrcode[pil]>=7.4",   # qrcode core + Pillow for PNG rendering
-]
-
-[project.optional-dependencies]
-dev = [
+    "qrcode[pil]>=7.4",
     "pytest>=7.0",
     "pytest-cov>=4.0",
     "ruff>=0.1.0",
